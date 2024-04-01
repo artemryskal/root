@@ -1,10 +1,16 @@
 <single-spa-router>
-  <main>
+  <div>
     <route default>
       <link
         rel="stylesheet"
         href="/dist/assets/file-manager/style.css?v=<%=version%>" />
       <application name="@gostdoc/manager"></application>
     </route>
-  </main>
+    <route path="/editor">
+      <link
+        rel="stylesheet"
+        href="/dist/assets/editor/style.css?v=<%=version%>" />
+      <application name="@gostdoc/editor"></application>
+    </route>
+  </div>
 </single-spa-router>

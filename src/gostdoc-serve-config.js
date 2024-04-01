@@ -8,6 +8,7 @@ import layout from './serve-layout.html'
 
 const serveImports = {
   '@gostdoc/manager': () => import('/dist/manager.js'),
+  '@gostdoc/editor': () => import('/dist/editor.js'),
 }
 
 const routes = constructRoutes(layout)

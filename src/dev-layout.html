@@ -1,7 +1,10 @@
 <single-spa-router>
-  <main>
+  <div>
     <route default>
       <application name="@gostdoc/manager"></application>
     </route>
-  </main>
+    <route path="/editor">
+      <application name="@gostdoc/editor"></application>
+    </route>
+  </div>
 </single-spa-router>

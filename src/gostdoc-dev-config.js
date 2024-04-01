@@ -9,6 +9,8 @@ import layout from './dev-layout.html'
 const devImports = {
   '@gostdoc/manager': () =>
     import(/* webpackIgnore: true */ '//localhost:8081/src/main.js'),
+  '@gostdoc/editor': () =>
+    import(/* webpackIgnore: true */ '//localhost:8082/src/main.js')
 }
 
 const routes = constructRoutes(layout)
