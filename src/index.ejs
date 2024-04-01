@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru" class="page">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Root Config</title>
+  <script src="https://cdn.jsdelivr.net/npm/regenerator-runtime@0.13.7/runtime.min.js"></script>
+<!--  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https:; object-src 'none';">-->
+  <meta name="importmap-type" content="systemjs-importmap" />
+
+  <script type="systemjs-importmap">
+    {
+      "imports": {
+        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js"
+      }
+    }
+  </script>
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js" as="script">
+
+  <% if (isDev) { %>
+  <script type="systemjs-importmap">
+    {
+      "imports": {
+        "@gostdoc/dev-config": "//localhost:8080/gostdoc-dev-config.js"
+      }
+    }
+  </script>
+  <% } %>
+
+  <% if (isServe) { %>
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "@gostdoc/serve-config": "//localhost:8080/gostdoc-serve-config.js"
+        }
+      }
+    </script>
+  <% } %>
+
+  <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
+  <% if (isDev) { %>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.js"></script>
+  <% } else { %>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js"></script>
+  <% } %>
+
+</head>
+<body class="page__body">
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+
+  <% if (isDev) { %>
+  <script>
+    System.import('@gostdoc/dev-config');
+  </script>
+  <% } %>
+  <% if (isServe) { %>
+  <script>
+    System.import('@gostdoc/serve-config');
+  </script>
+  <% } %>
+  <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
+</body>
+</html>
